@@ -1,20 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define E_1G_TNT 4184
+#define E_1G_TNT 4184.0
 #define E_C 1673.6
-#define R 5
-#define MASSA_PEDRA 20
+#define R 5.0
+#define MASSA_PEDRA 20.0
 #define MASSA_CAPACETE 1.5
-#define MASSA_ROUPA 85
+#define MASSA_ROUPA 85.0
 #define MASSA_INICIAL_NAVE 4200.0
 #define MASSA_AGUA 1.0
 #define MASSA_TOTAL_OBJ 294
 #define V_GAS 900.0
 #define TEMPO_SOLTA_GAS 0.010 // g/s
 #define V_IDEAL_NAVE 0.1
-#define DISTANCIA_ESTACAO 1000
-#define TEMPO_DE_OXIGENIO 3600
+#define DISTANCIA_ESTACAO 1000.0
+#define TEMPO_DE_OXIGENIO 3600.0
 float energia_cinetica2g = E_1G_TNT * 2 * 0.2; // 20% da energia de 2 gramas de TNT
 
 int verificaFreio(float v_nave)
@@ -60,7 +60,7 @@ int verificaVolta(int qtd_tnt, float massa)
         if (verificaFreio(v_nave))
         {
             printf("\nVelocidade nave: %.4f   massa restante: %.2f    QTD. TNT: %d\n", v_nave, massa_rest, i);
-            printf('--------------');
+            printf("--------------");
         }
     }
 }
@@ -112,7 +112,7 @@ int main()
                                     printf("Qtd. roupa: %d    Qtd. pedra: %d   Qtd. capacete: %d  Qtd. agua: %.2f\n", qtd_roupa, qtd_pedra, qtd_capacete, MASSA_AGUA / qtd_agua);
                                     printf("==============");
                                     printf("\nVelocidade nave: %.4f   massa restante: %.2f    QTD. TNT: %d\n", v_nave, massa_rest, i);
-                                    printf('--------------');
+                                    printf("--------------");
                                 }
                             }
                         }
