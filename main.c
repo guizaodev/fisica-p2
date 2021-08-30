@@ -3,7 +3,7 @@
 #include <math.h>
 #define E_1G_TNT 4184.0
 #define E_C 1673.6
-#define R 5.0
+#define R 6.0
 #define MASSA_PEDRA 20.0
 #define MASSA_CAPACETE 1.5
 #define MASSA_ROUPA 85.0
@@ -22,17 +22,18 @@ int verificaFreio(float v_nave)
     float massa_gas = 0.0;
     float massa_atual_nave = MASSA_INICIAL_NAVE - MASSA_TOTAL_OBJ;
     float tempo_freio = 0, a_freio = 0, dist_freio = 0, tempo_MRU;
-    // Massa_atual_nave * V_IDEAL_NAVE = Massa_atual_nave * v_nave - Massa_gas*v_gas;
-    massa_gas = (massa_atual_nave * (V_IDEAL_NAVE - v_nave)) / (V_GAS * (-1));
+    // Massa_atual_nave * V_IDEAL_NAVE = Massa_atual_nave * v_nave - Massa_gas*v_gas*raiz(2)/2;
+    massa_gas = (massa_atual_nave * (V_IDEAL_NAVE - v_nave)) / (V_GAS * (-1)*(sqrt(2)/2));
     tempo_freio = massa_gas / TEMPO_SOLTA_GAS;
     // v = vo - at;
     a_freio = (V_IDEAL_NAVE - v_nave) / tempo_freio;
     // v^2 = vo^2 - 2*a*var_x -> var_x = (v^2 - vo^2) / (-2a);
     dist_freio = (V_IDEAL_NAVE * V_IDEAL_NAVE - v_nave * v_nave) / (2 * a_freio);
-    printf("\n Massa gas: %.2f  tempo_freio: %.2f   dist_freio: %.2f\n", massa_gas, tempo_freio, dist_freio);
+    
     tempo_MRU = (DISTANCIA_ESTACAO - dist_freio) / v_nave;
     if (tempo_MRU + tempo_freio < 3600 && massa_gas <= 1.5) // ===================== // ---------- X
     {
+        printf("\n Massa gas: %.2f  tempo_freio: %.2f   dist_freio: %.2f\n", massa_gas, tempo_freio, dist_freio);
         printf("Tempo que levou: %.2f\n", tempo_freio + tempo_MRU);
         printf("Distancia percorrida em MRU: %.2f\n", DISTANCIA_ESTACAO - dist_freio);
         printf("Vocês conseguiram chegar vivos!\n");
@@ -56,7 +57,6 @@ int verificaVolta(int qtd_tnt, float massa)
         momento_obj = v_obj * massa_rest;
         // v_obj * massa_rest = v_nave * massa_atual_nave
         v_nave = momento_obj / (MASSA_INICIAL_NAVE - MASSA_TOTAL_OBJ);
-
         if (verificaFreio(v_nave))
         {
             printf("\nVelocidade nave: %.4f   massa restante: %.2f    QTD. TNT: %d\n", v_nave, massa_rest, i);
@@ -87,7 +87,7 @@ int main()
                         ec_total = energia_cinetica2g * qtd_tnt;
                         v = sqrt((2 * ec_total) / massa); // e=mv^2/2
                         momento = massa * R * v;
-                        if (momento > 4985 && momento < 5012 && qtd_tnt < 4)
+                        if (momento > 4985 && momento < 5011 && qtd_tnt < 4)
                         {
                             float v_obj = 0;
                             float v_nave = 0;
