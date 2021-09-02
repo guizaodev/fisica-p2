@@ -17,30 +17,6 @@
 #define TEMPO_DE_OXIGENIO 3600.0
 float energia_cinetica2g = E_1G_TNT * 2 * 0.2; // 20% da energia de 2 gramas de TNT
 
-int verificaFreio(float v_nave)
-{
-    float massa_gas = 0.0;
-    float massa_atual_nave = MASSA_INICIAL_NAVE - MASSA_TOTAL_OBJ;
-    float tempo_freio = 0, a_freio = 0, dist_freio = 0, tempo_MRU;
-    // Massa_atual_nave * V_IDEAL_NAVE = Massa_atual_nave * v_nave - Massa_gas*v_gas*sen 45;
-    massa_gas = (massa_atual_nave * (V_IDEAL_NAVE - v_nave)) / (V_GAS * (-1) * (sqrt(2) / 2));
-    tempo_freio = massa_gas / TEMPO_SOLTA_GAS;
-    // v = vo - at;
-    a_freio = (V_IDEAL_NAVE - v_nave) / tempo_freio;
-    // v^2 = vo^2 - 2*a*var_x -> var_x = (v^2 - vo^2) / (-2a);
-    dist_freio = (V_IDEAL_NAVE * V_IDEAL_NAVE - v_nave * v_nave) / (2 * a_freio);
-
-    tempo_MRU = (DISTANCIA_ESTACAO - dist_freio) / v_nave;
-    if (tempo_MRU + tempo_freio < 3600 && massa_gas <= 1.5) // ===================== // ---------- X
-    {
-        printf("\n Massa gas: %.2f  tempo_freio: %.2f   dist_freio: %.2f\n", massa_gas, tempo_freio, dist_freio);
-        printf("Tempo que levou: %.2f\n", tempo_freio + tempo_MRU);
-        printf("Distancia percorrida em MRU: %.2f\n", DISTANCIA_ESTACAO - dist_freio);
-        printf("Vocês conseguiram chegar vivos!\n");
-        return 1;
-    }
-    return 0;
-}
 int main()
 {
 
