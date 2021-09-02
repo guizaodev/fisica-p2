@@ -74,13 +74,13 @@ int main()
                                 if (tempo_MRU + tempo_freio < 3600 && massa_gas <= 1.5) // ===================== // ---------- X
                                 {
                                     printf("------INICIO------\n");
-                                    printf("Momento: %.3f   massa: %.2f   Quantidade de TNT: %.1f\n", momento, massa, ec_total / energia_cinetica2g);
-                                    printf("Ec total: %.3f   velocidade: %.2f  \n", ec_total, v);
-                                    printf("Qtd. roupa: %d    Qtd. pedra: %d   Qtd. capacete: %d  Qtd. agua: %.2f\n", qtd_roupa, qtd_pedra, qtd_capacete, MASSA_AGUA / qtd_agua);
+                                    printf("Momento: %.3f\t\t|\tMassa: %.2f\t\t\t|\tQuantidade de TNT: %.1f\n", momento, massa, ec_total / energia_cinetica2g);
+                                    printf("Ec total: %.3f\t\t|\tVelocidade: %.2f  \n", ec_total, v);
+                                    printf("Qtd. roupa: %d\t\t\t|\tQtd. pedra: %d\t\t\t|\tQtd. capacete: %d\t|\tQtd. agua: %.2f\n", qtd_roupa, qtd_pedra, qtd_capacete, MASSA_AGUA / qtd_agua);
                                     printf("==============");
-                                    printf("\nVelocidade nave: %.4f   massa restante: %.2f    QTD. TNT: %d\n", v_nave, massa_rest, i);
+                                    printf("\nVelocidade nave: %.4f\t|\tMassa restante: %.2f\t|\tQtd. TNT: %d\n", v_nave, massa_rest, i);
                                     printf("--------------");
-                                    printf("\n Massa gas: %.2f  tempo_freio: %.2f   dist_freio: %.2f\n", massa_gas, tempo_freio, dist_freio);
+                                    printf("\nMassa gas: %.2f\t\t\t|\tTempo_freio: %.2f\t\t|\tDist_freio: %.2f\n", massa_gas, tempo_freio, dist_freio);
                                     printf("Tempo que levou: %.2f\n", tempo_freio + tempo_MRU);
                                     printf("Distancia percorrida em MRU: %.2f\n", DISTANCIA_ESTACAO - dist_freio);
                                     printf("Vocês conseguiram chegar vivos!\n");
